@@ -42,7 +42,9 @@ public class TableRenderData implements RenderData {
 
     public TableRenderData(RowRenderData header, List<RowRenderData> datas, Style headerStyle, Style bodyStyle) {
         this.header = new ArrayList<>();
-        this.header.add(header);
+        if (null != header) {
+            this.header.add(header);
+        }
         this.rowDatas = datas;
         this.headerStyle = headerStyle;
         this.bodyStyle = bodyStyle;

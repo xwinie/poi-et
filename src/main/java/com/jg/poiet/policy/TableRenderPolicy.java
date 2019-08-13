@@ -53,16 +53,20 @@ public class TableRenderPolicy extends AbstractRenderPolicy<TableRenderData> {
             if (tableData.isSetHeader()) {
                 List<RowRenderData> headerData = tableData.getHeader();
                 for (RowRenderData rowRenderData : headerData) {
-                    renderRow(template, sheet.getRow(rowIndex), rowRenderData, cell.getColumnIndex(), tableData.getHeaderStyle());
-                    rowIndex ++;
+                    if (null != rowRenderData) {
+                        renderRow(template, sheet.getRow(rowIndex), rowRenderData, cell.getColumnIndex(), tableData.getHeaderStyle());
+                        rowIndex ++;
+                    }
                 }
             }
             if (tableData.isSetBody()) {
                 List<RowRenderData> bodyData = tableData.getRowDatas();
                 Iterator<RowRenderData> iterator = bodyData.iterator();
                 for (RowRenderData rowRenderData : bodyData) {
-                    renderRow(template, sheet.getRow(rowIndex), rowRenderData, cell.getColumnIndex(), tableData.getBodyStyle());
-                    rowIndex ++;
+                    if (null != rowRenderData) {
+                        renderRow(template, sheet.getRow(rowIndex), rowRenderData, cell.getColumnIndex(), tableData.getBodyStyle());
+                        rowIndex ++;
+                    }
                 }
             }
         }
